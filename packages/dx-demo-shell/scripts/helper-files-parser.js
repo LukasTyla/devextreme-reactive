@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const {
-  overrideFileIfChanged, getFileContents, writeObjectToFile,
-} = require('./fs-utils');
+const { getFileContents, writeObjectToFile } = require('./fs-utils');
 const { getCurrentProductName } = require('./utils');
 
 const THEME_SOURCES_FOLDER = './src/theme-sources';
@@ -16,7 +14,7 @@ const retrieveImportFiles = (imports, regex) => imports
   .filter(r => !!r)
   .map(r => r[1]);
 
-const knownDeepImports = ['@mui/material', '@mui/icons-material', '@mui/styles'];
+const knownDeepImports = ['@mui/material', '@mui/icons-material'];
 const dependencies = {
   '"@mui/material"': ['"@mui/icons-material"'],
   '"@devexpress/dx-react-chart-material-ui"': [
@@ -24,7 +22,6 @@ const dependencies = {
     '"@mui/icons-material"',
     '"@emotion/react"',
     '"@emotion/styled"',
-    '"@mui/styles"',
   ],
   '"@devexpress/dx-react-chart-bootstrap4"': ['"@devexpress/dx-react-chart"'],
   '"@devexpress/dx-react-chart"': ['"@devexpress/dx-react-core"'],
@@ -38,7 +35,6 @@ const dependencies = {
     '"@mui/icons-material"',
     '"@emotion/react"',
     '"@emotion/styled"',
-    '"@mui/styles"',
     '"@mui/lab"',
   ],
   '"@devexpress/dx-react-grid"': ['"@devexpress/dx-react-core"'],
@@ -47,7 +43,6 @@ const dependencies = {
     '"@mui/icons-material"',
     '"@emotion/react"',
     '"@emotion/styled"',
-    '"@mui/styles"',
     '"@mui/lab"',
   ],
   '"@devexpress/dx-react-scheduler"': ['"@devexpress/dx-react-core"'],
